@@ -30,15 +30,13 @@ int main(int argc, char** argv) {
     int BUFFER_LENGTH = 100;
     char line[BUFFER_LENGTH];
     
-    printf("Hi. welcome to chell. You look fat\n");
+    printf("Hi. Welcome to chell. Do what you want\n");
     
     while(!exit){
         memset(line, 0, BUFFER_LENGTH);
         printf("$ ");
         input = fgets (line, BUFFER_LENGTH, stdin);
 
-        
-        
         //also need to check for just spaces
         if(input && strcmp(input, "\n")){
 
@@ -65,16 +63,16 @@ int main(int argc, char** argv) {
 
             first = arg[0];
             if(i>1)
-            second = arg[1];
+                second = arg[1];
             if(i>2)
-            third = arg[2];
+                third = arg[2];
 
-            printf("%s\n", first);
+            /*printf("%s\n", first);
             if(second){
                 printf("%s\n", second);
-            }
+            }*/
 
-            if(!strcmp(first, "quit")){
+            if(!strcmp(first, "quit") || !strcmp(first, "exit")){
                 printf("Good riddance!\n");
                 exit = 1;
             }
@@ -83,8 +81,10 @@ int main(int argc, char** argv) {
                 if(second){
                     size_t last = strlen (second) - 1;
                     input[last] = 0;
-                    printf("%s\n", second);
                     type(second);
+                }
+                else{
+                    printf("Hey bud, you have to follow 'type' with a filename\n");
                 }
                 
             }
@@ -92,8 +92,10 @@ int main(int argc, char** argv) {
                 if(second && third){
                     size_t last = strlen (second) - 1;
                     input[last] = 0;
-                    printf("%s\n", second);
                     copy(second, third);
+                }
+                else{
+                    printf("Good one, Champ. You're missing argument(s)\n");
                 }
                // copy(src, dest);
             }
@@ -101,14 +103,16 @@ int main(int argc, char** argv) {
                 if(second){
                     size_t last = strlen (second) - 1;
                     input[last] = 0;
-                    printf("%s\n", second);
                     delete(second);
+                }
+                else{
+                    printf("Really? Delete what? There's nothing there\n");
                 }
             }
             else{
                 int success = execute(first);
-                if(success){
-                    printf("Command not recognized: %s \n", input);
+                if(!success){
+                    printf("Your command <%s> is bad and you should feel bad\n", input);
                 }
                 
             }
@@ -127,8 +131,6 @@ int main(int argc, char** argv) {
 
 
 void copy(char* src, char * dest){
-    printf("executing copy command\n");
-    
     char c;
     FILE * fileIn;
     FILE * fileOut;
@@ -136,11 +138,11 @@ void copy(char* src, char * dest){
     fileOut = fopen(dest, "w");
 
     if(src == NULL){
-        printf("Could not open file %s \n", src);
+        printf("I can't open this file <%s> \n", src);
         return;
     }
     if(fileOut == NULL){
-        printf("Could not create/open file %s \n", dest);
+        printf("I can't open and/or make this file <%s> \n", dest);
         return;
     }
     if(fileIn) {
@@ -149,37 +151,60 @@ void copy(char* src, char * dest){
         fclose(fileIn);
         fclose(fileOut);
     }
-    printf("\n");
+    else{
+        printf("I couldn't even copy that if I tried\n");
+    }
 }
 
 void delete(char* filename){
-    remove(filename);
-    
+    if(remove(filename)<0){
+        printf("that stupid file couldn't be deleted\n");
+    }
 }
 
 int execute(char* filename){
+
+    pid_t  pID;
+    int status;
+
     char args[1][1];
     args[0][0]='\0';
-
-    if (execvp(filename, args) < 0) {     /* execute the command  */
-       printf("Execution of %s failed\n", filename);
-       return 0;
+    int forked;
+    pID = fork();
+    if (pID < 0) {    //fork
+         printf("Failed to execute %s", filename);
+          return 0;
     }
+    else if (pID == 0) {          //child
+        if (execvp(filename, args) < 0) {    
+            //printf("Execution of %s failed\n", filename);
+            return 0;
+        }
+    }
+    else { 
+        while (wait(&status) != pID){
+            //Wait and do nothing
+        } 
+               
+    }
+
+
     return 1;
 
 }
 void type(char* filename){
-    printf("executing type command on %s \n", filename);
-    
+
     char c;
     FILE * file = NULL;
     file = fopen(filename, "r");
-
 
     if(file) {
         while ((c = getc(file)) != EOF)
             putchar(c);
         fclose(file);
+    }
+    else{
+        printf("Yea, %s ain't gonna work. Try again\n", filename);
     }
     printf("\n");
     
