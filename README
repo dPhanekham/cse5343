@@ -1,0 +1,21 @@
+chell
+Derek Phanekham
+
+chell is a shell written in c and sometimes c is also hellish, hence chell.
+
+The allowed commands are as follows
+
+type <filename>
+copy <filename1> <filename2>
+delete <filename>
+exit | quit
+
+programs can be executed in the same manner as the bash shell.
+So if they are executed using 
+
+./filename
+
+the same thing applies in this instance
+
+
+
