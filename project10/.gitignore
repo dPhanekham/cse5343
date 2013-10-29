@@ -1,0 +1,6 @@
+bochsout.txt
+*.o
+*.out
+*.img
+kernel
+phello

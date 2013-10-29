@@ -1,0 +1,112 @@
+00000000000i[     ] Bochs x86 Emulator 2.3.5
+00000000000i[     ]   Build from CVS snapshot, on September 16, 2007
+00000000000i[     ] System configuration
+00000000000i[     ]   processors: 1 (cores=1, HT threads=1)
+00000000000i[     ]   A20 line support: yes
+00000000000i[     ]   APIC support: no
+00000000000i[     ] CPU configuration
+00000000000i[     ]   level: 5
+00000000000i[     ]   TLB enabled: yes
+00000000000i[     ]   SMP support: no
+00000000000i[     ]   FPU support: yes
+00000000000i[     ]   MMX support: yes
+00000000000i[     ]   SSE support: no
+00000000000i[     ]   CLFLUSH support: no
+00000000000i[     ]   v8086 mode support: yes
+00000000000i[     ]   VME support: yes
+00000000000i[     ]   3dnow! support: no
+00000000000i[     ]   PAE support: no
+00000000000i[     ]   PGE support: no
+00000000000i[     ]   PSE support: yes
+00000000000i[     ]   x86-64 support: no
+00000000000i[     ]   SEP support: no
+00000000000i[     ] Optimization configuration
+00000000000i[     ]   Guest2HostTLB support: no
+00000000000i[     ]   RepeatSpeedups support: no
+00000000000i[     ]   Icache support: no
+00000000000i[     ]   Host Asm support: yes
+00000000000i[     ]   Fast function calls: no
+00000000000i[     ] Devices configuration
+00000000000i[     ]   NE2000 support: no
+00000000000i[     ]   PCI support: no
+00000000000i[     ]   SB16 support: no
+00000000000i[     ]   USB support: no
+00000000000i[     ]   VGA extension support: vbe 
+00000000000i[MEM0 ] allocated memory at 0xb5181008. after alignment, vector=0xb5182000
+00000000000i[MEM0 ] 32.00MB
+00000000000i[MEM0 ] rom at 0xfffe0000/131072 ('/usr/local/share/bochs/BIOS-bochs-latest')
+00000000000i[MEM0 ] rom at 0xc0000/38400 ('/usr/local/share/bochs/VGABIOS-lgpl-latest')
+00000000000e[DEV  ] Bochs is not compiled with PCI support
+00000000000i[CMOS ] Using local time for initial clock
+00000000000i[CMOS ] Setting initial clock to: Tue Oct 29 01:01:46 2013 (time0=1383026506)
+00000000000i[DMA  ] channel 4 used by cascade
+00000000000i[DMA  ] channel 2 used by Floppy Drive
+00000000000i[FDD  ] fd0: 'floppya.img' ro=0, h=2,t=80,spt=18
+00000000000i[MEM0 ] Register memory access handlers: 000a0000-000bffff
+00000000000i[VGA  ] interval=300000
+00000000000i[MEM0 ] Register memory access handlers: e0000000-e07fffff
+00000000000i[VGA  ] VBE Bochs Display Extension Enabled
+00000000000i[     ] init_mem of 'harddrv' plugin device by virtual method
+00000000000i[     ] init_mem of 'keyboard' plugin device by virtual method
+00000000000i[     ] init_mem of 'serial' plugin device by virtual method
+00000000000i[     ] init_mem of 'parallel' plugin device by virtual method
+00000000000i[     ] init_mem of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] init_mem of 'speaker' plugin device by virtual method
+00000000000i[     ] init_dev of 'harddrv' plugin device by virtual method
+00000000000i[HD   ] Using boot sequence floppy, none, none
+00000000000i[HD   ] Floppy boot signature check is enabled
+00000000000i[     ] init_dev of 'keyboard' plugin device by virtual method
+00000000000i[KBD  ] will paste characters every 1000 keyboard ticks
+00000000000i[     ] init_dev of 'serial' plugin device by virtual method
+00000000000i[SER  ] com1 at 0x03f8 irq 4
+00000000000i[     ] init_dev of 'parallel' plugin device by virtual method
+00000000000i[PAR  ] parallel port 1 at 0x0378 irq 7
+00000000000i[     ] init_dev of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] init_dev of 'speaker' plugin device by virtual method
+00000000000i[SPEAK] Failed to open /dev/console: Success
+00000000000i[SPEAK] Deactivating beep on console
+00000000000i[     ] register state of 'harddrv' plugin device by virtual method
+00000000000i[     ] register state of 'keyboard' plugin device by virtual method
+00000000000i[     ] register state of 'serial' plugin device by virtual method
+00000000000i[     ] register state of 'parallel' plugin device by virtual method
+00000000000i[     ] register state of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] register state of 'speaker' plugin device by virtual method
+00000000000i[SYS  ] bx_pc_system_c::Reset(HARDWARE) called
+00000000000i[     ] reset of 'harddrv' plugin device by virtual method
+00000000000i[     ] reset of 'keyboard' plugin device by virtual method
+00000000000i[     ] reset of 'serial' plugin device by virtual method
+00000000000i[     ] reset of 'parallel' plugin device by virtual method
+00000000000i[     ] reset of 'extfpuirq' plugin device by virtual method
+00000000000i[     ] reset of 'speaker' plugin device by virtual method
+00000003442i[BIOS ] $Revision: 1.183 $ $Date: 2007/09/10 20:00:29 $
+00000320039i[KBD  ] reset-disable command received
+00000342303i[BIOS ] Starting rombios32
+00000343126i[BIOS ] ram_size=0x02000000
+00000343735i[BIOS ] Found 1 cpu(s)
+00000565174i[VBIOS] VGABios $Id: vgabios.c,v 1.66 2006/07/10 07:47:51 vruppert Exp $
+00000565245i[VGA  ] VBE known Display Interface b0c0
+00000565277i[VGA  ] VBE known Display Interface b0c4
+00000568202i[VBIOS] VBE Bios $Id: vbe.c,v 1.58 2006/08/19 09:39:43 vruppert Exp $
+00001357315i[BIOS ] Booting from 0000:7C00
+02044963595p[TGUI ] >>PANIC<< Received SIGHUP: quit simulation
+02044963595i[CPU  ] real mode
+02044963595i[CPU  ] CS.d_b = 16 bit
+02044963595i[CPU  ] SS.d_b = 16 bit
+02044963595i[CPU  ] | EAX=00000000  EBX=0000002e  ECX=0000004c  EDX=00000000
+02044963595i[CPU  ] | ESP=0000fee2  EBP=0000ff02  ESI=ffff0000  EDI=00080000
+02044963595i[CPU  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf ZF af PF cf
+02044963595i[CPU  ] | SEG selector     base    limit G D
+02044963595i[CPU  ] | SEG sltr(index|ti|rpl)     base    limit G D
+02044963595i[CPU  ] |  CS:f000( 0004| 0|  0) 000f0000 0000ffff 0 0
+02044963595i[CPU  ] |  DS:0040( 0005| 0|  0) 00000400 0000ffff 0 0
+02044963595i[CPU  ] |  SS:2000( 0005| 0|  0) 00020000 0000ffff 0 0
+02044963595i[CPU  ] |  ES:2000( 0005| 0|  0) 00020000 0000ffff 0 0
+02044963595i[CPU  ] |  FS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+02044963595i[CPU  ] |  GS:0000( 0005| 0|  0) 00000000 0000ffff 0 0
+02044963595i[CPU  ] | EIP=0000e865 (0000e861)
+02044963595i[CPU  ] | CR0=0x00000010 CR1=0 CR2=0x00000000
+02044963595i[CPU  ] | CR3=0x00000000 CR4=0x00000000
+02044963595i[CPU  ] >> mov bx, word ptr ds:0x1a : 8B1E1A00
+02044963595i[CMOS ] Last time is 1383026710 (Tue Oct 29 01:05:10 2013)
+02044963595i[     ] restoring default signal behavior
+02044963595i[CTRL ] quit_sim called with exit code 1
