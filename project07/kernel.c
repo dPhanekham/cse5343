@@ -1,5 +1,5 @@
 /*Derek Phanekham
-	simple kernel
+	simple kernel with interrupts
 */
 
 void printString(char* string);
@@ -13,18 +13,19 @@ char buf[512];
 int sectorNum = 30;
 
 int main() {
-
+	//test printString
 	printString("Hello World\r\n\0");
-
+	//test readString
 	printString("Enter a line: \r\n\0");
 	readString(line);
 	printString(line);
-
+	//test readSector
 	readSector(buf, sectorNum);
 	printString(buf);
-
+	//test interrupt21
 	makeInterrupt21();
-	interrupt(0x21, 0, 0, 0, 0);
+	interrupt(0x21, 1, line, 0, 0);
+	interrupt(0x21, 0, line, 0, 0);
 
 	while(1); //idle
 
@@ -45,21 +46,25 @@ void readString(char * string) {
 	int index = 0;
 	char c = 0;
 	c = interrupt(0x16, 0, 0, 0, 0);
-	interrupt(0x10, 0xE * 256 + c, 0, 0, 0);
 
 	while (c != 0xD) {
 		if (c == 0x8 && index > 0) {
 			index--;
 			string[index] = ' ';
 			interrupt(0x10, 0xE * 256 + '\b', 0, 0, 0);
-			index++;
+			interrupt(0x10, 0xE * 256 + ' ', 0, 0, 0);
+			interrupt(0x10, 0xE * 256 + '\b', 0, 0, 0);
+			c = interrupt(0x16, 0, 0, 0, 0);
 		} else {
 			string[index] = c;
-			c = interrupt(0x16, 0, 0, 0, 0);
 			interrupt(0x10, 0xE * 256 + c, 0, 0, 0);
+			c = interrupt(0x16, 0, 0, 0, 0);
 			index++;
 		}
+
 	}
+	interrupt(0x10, 0xE * 256 + '\r', 0, 0, 0);
+	interrupt(0x10, 0xE * 256 + '\n', 0, 0, 0);
 	string[index] = '\r';
 	string[index + 1] = '\n';
 	string[index + 2] = 0;
@@ -82,7 +87,10 @@ void readSector(char* buffer, int sector) {
 }
 
 void handleInterrupt21(int ax, int bx, int cx, int dx) {
-	printString("calling interrupt 21.");
+	if (ax == 0) printString(bx);
+	else if (ax == 1) readString(bx);
+	else if (ax == 2) readSector(bx, cx);
+	else if (ax >= 3) printString("Error. interrupt not recognized\r\n\0");
 }
 
 int mod(int a, int b) {
