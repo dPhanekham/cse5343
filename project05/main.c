@@ -29,8 +29,12 @@ int main(int argc, char** argv) {
     int exit = 0;
     int BUFFER_LENGTH = 100;
     char line[BUFFER_LENGTH];
+    int thirteen;
+
+    thirteen = (int)("\r" - '\0');
     
-    printf("Hi. Welcome to chell. Do what you want\n");
+    printf("%d\n", thirteen );
+    printf("Hi. Welcome to chell. What do you want\n");
     
     while(!exit){
         memset(line, 0, BUFFER_LENGTH);
