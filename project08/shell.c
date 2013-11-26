@@ -15,11 +15,13 @@ int main() {
 	while(1){
 		interrupt(0x21, 0, "$\0", 0, 0);
 		interrupt(0x21, 1, line, 0, 0);
+		//loads file
 		if (foundType(line) == 1) {
 			interrupt(0x21, 3, line + 5, fileBuf, 0);
 			interrupt(0x21, 0, fileBuf, 0, 0);
+		//executes file
 		} else if (foundExecute(line) == 1) {
-			interrupt(0x21, 4, line + 8, 0x2000, 0);
+			interrupt(0x21, 6, line + 8, 0x2000, 0);
 		} else {
 			interrupt(0x21, 0, badCommand, 0, 0);
 		}

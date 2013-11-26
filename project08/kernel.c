@@ -42,7 +42,7 @@ int main() {
 	interrupt(0x21, 4, "tstpr2\0", 0x2000, 0);
 	*/
 	makeInterrupt21();
-	interrupt(0x21, 4, "shell\0", 0x2000, 0);
+	interrupt(0x21, 6, "shell\0", 0x2000, 0);
 
 	while(1); //idle
 
@@ -181,13 +181,13 @@ void handleInterrupt21(int ax, int bx, int cx, int dx) {
 	else if (ax == 1) readString(bx);
 	else if (ax == 2) readSector(bx, cx);
 	else if (ax == 3) readFile(bx, cx);
-	else if (ax == 4) executeProgram(bx, cx);
-	else if (ax == 5) terminate();
-	else if (ax >= 6) printString("Error. interrupt not recognized\r\n\0");
+	else if (ax == 6) executeProgram(bx, cx);
+	else if (ax == 7) terminate();
+	else if (ax >= 8) printString("Error. interrupt not recognized\r\n\0");
 }
 
 void terminate() {
-	interrupt(0x21, 4, "shell\0", 0x2000, 0);
+	interrupt(0x21, 6, "shell\0", 0x2000, 0);
 }
 
 int mod(int a, int b) {
