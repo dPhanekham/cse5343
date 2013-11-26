@@ -18,6 +18,30 @@ char fileBuf[13312];
 
 int main() {
 
+		/*
+	//test printString
+	printString("Hello World\r\n\0");
+	//test readString
+	printString("Enter a line: \r\n\0");
+	readString(line);
+	printString(line);
+	//test readSector
+	readSector(buf, sectorNum);
+	printString(buf);
+	//test interrupt21
+	makeInterrupt21();
+	interrupt(0x21, 1, line, 0, 0);
+	interrupt(0x21, 0, line, 0, 0);
+	
+
+	makeInterrupt21();
+	interrupt(0x21, 3, "messag\0", fileBuf, 0);
+	interrupt(0x21, 0, fileBuf, 0, 0);
+
+	interrupt(0x21, 0, "Executing program\r\n\0", 0, 0);
+	interrupt(0x21, 4, "tstpr2\0", 0x2000, 0);
+	*/
+	makeInterrupt21();
 	interrupt(0x21, 4, "shell\0", 0x2000, 0);
 
 	while(1); //idle
@@ -163,9 +187,7 @@ void handleInterrupt21(int ax, int bx, int cx, int dx) {
 }
 
 void terminate() {
-	while(1) { 
-		//hang up
-	}
+	interrupt(0x21, 4, "shell\0", 0x2000, 0);
 }
 
 int mod(int a, int b) {
